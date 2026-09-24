@@ -43,3 +43,62 @@ preprocessor=ColumnTransformer(
         ("cat",categorical_transformer,categorical_featues)
     ]
 )
+
+#creation des quatre models
+linearModel=LinearRegression()
+rfModel=RandomForestRegressor()
+svrModel=SVR()
+xgboostModel=XGBRegressor()
+
+#creation de pipeline
+linearPipeline=Pipeline([
+    ("preprocessing",preprocessor),
+    ("model",linearModel)
+])
+rfPipeline=Pipeline([
+    ("preprocessing",preprocessor),
+    ("model",rfModel)
+])
+
+svrPipeline=Pipeline([
+    ("preprocessing",preprocessor),
+    ("model",svrModel)
+])
+xgboostPipeline=Pipeline([
+    ("preprocessing",preprocessor),
+    ("model",xgboostModel)
+])
+
+#les models dans dictionnaires
+resultats=[]
+models= {
+    "linear regression":linearPipeline,
+    "random forest":rfPipeline,
+    "svr":svrPipeline,
+    "xgboost ":xgboostPipeline
+}
+resultats=[]
+for name,model in models.items():
+    print(f"entrainement de:{name}")
+    model.fit(X_train,y_train)
+
+#predection
+predictions={}
+for name,model in models.items():
+    predictions[name]=model.predict(X_test)
+
+#calcul des RMSE,MAE , R^2
+for name,y_pred in predictions.items():
+    mae=mean_absolute_error(y_test,y_pred)
+    mse=mean_squared_error(y_test,y_pred)
+    rmse=mse**0.5
+    r2=r2_score(y_test,y_pred)
+    resultats.append({
+      "Model":name,
+      "RMSE":rmse,
+      "MSE":mse,
+      "R2":r2,
+      "MAE":mae
+    })
+results_df = pd.DataFrame(resultats)
+print(results_df)
