@@ -28,3 +28,18 @@ X_train,X_test,y_train,y_test=train_test_split(
     test_size=0.25,
     random_state=42
 )
+
+#preprocessing
+numeric_features=["year","km_driven"]
+categorical_featues=["fuel","seller_type","transmission","owner"]
+
+numeric_transformer=StandardScaler()
+categorical_transformer=OneHotEncoder(
+    handle_unknown="ignore"
+)
+preprocessor=ColumnTransformer(
+    transformers=[
+        ("nums",numeric_transformer,numeric_features),
+        ("cat",categorical_transformer,categorical_featues)
+    ]
+)
