@@ -35,7 +35,8 @@ categorical_featues=["fuel","seller_type","transmission","owner"]
 
 numeric_transformer=StandardScaler()
 categorical_transformer=OneHotEncoder(
-    handle_unknown="ignore"
+     drop="first",
+     handle_unknown="ignore"
 )
 preprocessor=ColumnTransformer(
     transformers=[
