@@ -231,3 +231,5 @@ joblib.dump(
     xgb_grid.best_estimator_,
     "models/xgboost_optimized.pkl"
 )
+
+df = pd.read_csv("data/clean_car_price.csv")
