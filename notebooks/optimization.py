@@ -9,6 +9,8 @@ from sklearn.ensemble import RandomForestRegressor
 from xgboost import XGBRegressor
 
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+import joblib
+
 
 df = pd.read_csv("data/clean_car_price.csv")
 print(df.shape)
@@ -219,3 +221,13 @@ print(baseline_df)
 
 print("Apres optimisation :")
 print(optimized_df)
+
+joblib.dump(
+    rf_grid.best_estimator_,
+    "models/random_forest_optimized.pkl"
+)
+
+joblib.dump(
+    xgb_grid.best_estimator_,
+    "models/xgboost_optimized.pkl"
+)
