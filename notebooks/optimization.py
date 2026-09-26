@@ -232,4 +232,3 @@ joblib.dump(
     "models/xgboost_optimized.pkl"
 )
 
-df = pd.read_csv("data/clean_car_price.csv")
