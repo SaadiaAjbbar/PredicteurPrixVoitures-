@@ -45,3 +45,15 @@ categorical_transformer = OneHotEncoder(
     drop="first",
     handle_unknown="ignore"
 )
+preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", numeric_transformer, numeric_features),
+        ("cat", categorical_transformer, categorical_features)
+    ]
+)
+
+linear_model = LinearRegression()
+
+rf_model = RandomForestRegressor()
+
+svr_model = SVR()
