@@ -57,3 +57,16 @@ linear_model = LinearRegression()
 rf_model = RandomForestRegressor()
 
 svr_model = SVR()
+
+linear_pipeline = Pipeline([
+    ("preprocessing", preprocessor),
+    ("model", linear_model)
+])
+rf_pipeline = Pipeline([
+    ("preprocessing", preprocessor),
+    ("model", rf_model)
+])
+svr_pipeline = Pipeline([
+    ("preprocessing", preprocessor),
+    ("model", svr_model)
+])
