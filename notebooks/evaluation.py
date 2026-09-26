@@ -70,3 +70,11 @@ svr_pipeline = Pipeline([
     ("preprocessing", preprocessor),
     ("model", svr_model)
 ])
+
+
+rf_optimized = joblib.load(
+    "models/random_forest_optimized.pkl"
+)
+xgb_optimized = joblib.load(
+    "models/xgboost_optimized.pkl"
+)
