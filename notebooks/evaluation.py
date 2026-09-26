@@ -78,3 +78,22 @@ rf_optimized = joblib.load(
 xgb_optimized = joblib.load(
     "models/xgboost_optimized.pkl"
 )
+
+models = {
+    "Linear Regression": linear_pipeline,
+    "Random Forest": rf_pipeline,
+    "SVR": svr_pipeline,
+    "Random Forest Optimized": rf_optimized,
+    "XGBoost Optimized": xgb_optimized
+}
+
+for name, model in models.items():
+    baseline_models = {
+    "Linear Regression": linear_pipeline,
+    "Random Forest": rf_pipeline,
+    "SVR": svr_pipeline
+}
+
+for name, model in baseline_models.items():
+    print(f"Entraînement de : {name}")
+    model.fit(X_train, y_train)
