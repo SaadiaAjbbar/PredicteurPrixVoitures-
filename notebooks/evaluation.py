@@ -20,3 +20,12 @@ from sklearn.metrics import (
 )
 
 df = pd.read_csv("data/clean_car_price.csv")
+
+X = df.drop(columns=["selling_price"])
+y = df["selling_price"]
+X_train, X_test, y_train, y_test = train_test_split(
+    X,
+    y,
+    test_size=0.20,
+    random_state=42
+)
