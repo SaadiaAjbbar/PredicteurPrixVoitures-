@@ -29,3 +29,19 @@ X_train, X_test, y_train, y_test = train_test_split(
     test_size=0.20,
     random_state=42
 )
+
+numeric_features = [
+    "year",
+    "km_driven"
+]
+categorical_features = [
+    "fuel",
+    "seller_type",
+    "transmission",
+    "owner"
+]
+numeric_transformer = StandardScaler()
+categorical_transformer = OneHotEncoder(
+    drop="first",
+    handle_unknown="ignore"
+)
